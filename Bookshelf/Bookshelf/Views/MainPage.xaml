@@ -4,8 +4,9 @@
              x:Class="Bookshelf.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+        <SearchBar x:Name="searchBar" Placeholder="search a book" PlaceholderColor="Gray" HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="Start" SearchCommand="{Binding SearchCommand}"/>
     </StackLayout>
 
 </ContentPage>
