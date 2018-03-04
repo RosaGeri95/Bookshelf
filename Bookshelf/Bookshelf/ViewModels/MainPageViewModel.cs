@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Bookshelf.ViewModels
 {
@@ -13,17 +14,25 @@ namespace Bookshelf.ViewModels
     {
         private IPageDialogService _pageDialog;
         public DelegateCommand SearchCommand { get; private set; }
+
+        private string _temporary;
+        public string Temporary
+        {
+            get { return _temporary; }
+            set { SetProperty(ref _temporary, value); }
+        }
         public MainPageViewModel(INavigationService navigationService, IPageDialogService PageDialog) 
             : base (navigationService)
         {
             Title = "Main Page";
             _pageDialog = PageDialog;
             SearchCommand = new DelegateCommand(Search);
+            Temporary = "-1";
         }
 
-        private void Search()
+        private async void Search()
         {
-            _pageDialog.DisplayAlertAsync("Book search", "Not implemented yet", "Ok");
+            Temporary = await WebClient.Client.SearchBooks();
         }
     }
 }
