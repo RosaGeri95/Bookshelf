@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -13,13 +14,18 @@ namespace Bookshelf.WebClient
 {
     class Client
     {
-        public async static Task<string> SearchBooks()
+        public async static Task<string> SearchBooks(string searchString)
         {
+            UriBuilder builder = new UriBuilder("https://www.goodreads.com/search/index.xml");
+            var query = HttpUtility.ParseQueryString(builder.Query);
+            query["key"] = "key";
+            query["q"] = searchString;
+            builder.Query = query.ToString();
+            string url = builder.ToString();
+
             HttpClient client = new HttpClient();
 
-            var uri = new Uri("uri");
-
-            var response = await client.GetAsync(uri);
+            var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

@@ -5,7 +5,7 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
-        <SearchBar x:Name="searchBar" Placeholder="search a book" PlaceholderColor="Gray" HorizontalOptions="CenterAndExpand"
+        <SearchBar Text="{Binding SearchText}"  Placeholder="search a book" PlaceholderColor="Gray" HorizontalOptions="CenterAndExpand"
                    VerticalOptions="Start" SearchCommand="{Binding SearchCommand}"/>
         <Editor Text="{Binding Temporary}"  VerticalOptions="FillAndExpand" HeightRequest="300"/>
     </StackLayout>

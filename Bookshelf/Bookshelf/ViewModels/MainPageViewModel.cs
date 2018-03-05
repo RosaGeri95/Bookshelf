@@ -16,10 +16,19 @@ namespace Bookshelf.ViewModels
         public DelegateCommand SearchCommand { get; private set; }
 
         private string _temporary;
+
         public string Temporary
         {
             get { return _temporary; }
             set { SetProperty(ref _temporary, value); }
+        }
+
+
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set { SetProperty(ref _searchText, value); }
         }
         public MainPageViewModel(INavigationService navigationService, IPageDialogService PageDialog) 
             : base (navigationService)
@@ -28,11 +37,16 @@ namespace Bookshelf.ViewModels
             _pageDialog = PageDialog;
             SearchCommand = new DelegateCommand(Search);
             Temporary = "-1";
+
         }
 
         private async void Search()
         {
-            Temporary = await WebClient.Client.SearchBooks();
+            if (SearchText != "")
+            {
+                SearchText.Trim().Replace(' ', '+');
+                Temporary = await WebClient.Client.SearchBooks(SearchText);
+            }
         }
     }
 }
