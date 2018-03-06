@@ -7,7 +7,18 @@
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
         <SearchBar Text="{Binding SearchText}"  Placeholder="search a book" PlaceholderColor="Gray" HorizontalOptions="CenterAndExpand"
                    VerticalOptions="Start" SearchCommand="{Binding SearchCommand}"/>
-        <Editor Text="{Binding Temporary}"  VerticalOptions="FillAndExpand" HeightRequest="300"/>
+        <ListView ItemsSource="{Binding Books}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="100">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding BookTitle}" LineBreakMode="WordWrap" WidthRequest="300"/>
+                            <Label Text="{Binding Author}" LineBreakMode="WordWrap" WidthRequest="100"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 
 </ContentPage>

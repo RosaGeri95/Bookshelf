@@ -14,7 +14,7 @@ namespace Bookshelf.WebClient
 {
     class Client
     {
-        public async static Task<string> SearchBooks(string searchString)
+        public async static Task<List<Book>> SearchBooks(string searchString)
         {
             UriBuilder builder = new UriBuilder("https://www.goodreads.com/search/index.xml");
             var query = HttpUtility.ParseQueryString(builder.Query);
@@ -38,25 +38,13 @@ namespace Bookshelf.WebClient
                     var title = element.Element("title").Value;
                     XElement author = element.Element("author");
                     var name = author.Element("name").Value;
-                    var book = new Book { Title = title, Author = name };
+                    var book = new Book { BookTitle = title, Author = name };
 
                     books.Add(book);
                 }
-
-                StringBuilder ret = new StringBuilder();
-                foreach (var book in books)
-                {
-                    ret.Append(book.Author);
-                    ret.Append(", ");
-                    ret.Append(book.Title);
-                    ret.Append("\n");
-
-                }
-                Console.WriteLine(ret.ToString());
-
-                return ret.ToString();
+                return books;
             }
-            return "0";
+            return new List<Book>();
         }
     }
 }

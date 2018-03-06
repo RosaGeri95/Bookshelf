@@ -1,9 +1,11 @@
-﻿using Prism.Commands;
+﻿using Bookshelf.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +14,14 @@ namespace Bookshelf.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private IPageDialogService _pageDialog;
         public DelegateCommand SearchCommand { get; private set; }
 
-        private string _temporary;
-
-        public string Temporary
+        private ObservableCollection<Book> _books;
+        public ObservableCollection<Book> Books
         {
-            get { return _temporary; }
-            set { SetProperty(ref _temporary, value); }
+            get { return _books; }
+            set { SetProperty(ref _books, value); }
         }
-
 
         private string _searchText;
         public string SearchText
@@ -30,22 +29,27 @@ namespace Bookshelf.ViewModels
             get { return _searchText; }
             set { SetProperty(ref _searchText, value); }
         }
-        public MainPageViewModel(INavigationService navigationService, IPageDialogService PageDialog) 
+        public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
             Title = "Main Page";
-            _pageDialog = PageDialog;
             SearchCommand = new DelegateCommand(Search);
-            Temporary = "-1";
-
+            Books = new ObservableCollection<Book>();
         }
 
         private async void Search()
         {
+            Books.Clear();
             if (SearchText != "")
             {
                 SearchText.Trim().Replace(' ', '+');
-                Temporary = await WebClient.Client.SearchBooks(SearchText);
+                var searchedBooks = await WebClient.Client.SearchBooks(SearchText);
+
+                ObservableCollection<Book> temp = new ObservableCollection<Book>(searchedBooks);
+                foreach (Book b in temp)
+                {
+                    Books.Add(b);
+                }
             }
         }
     }
