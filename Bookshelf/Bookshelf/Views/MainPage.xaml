@@ -7,6 +7,8 @@
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
         <SearchBar Text="{Binding SearchText}"  Placeholder="search a book" PlaceholderColor="Gray" HorizontalOptions="CenterAndExpand"
                    VerticalOptions="Start" SearchCommand="{Binding SearchCommand}"/>
+        <Button Text="Favourites" HorizontalOptions="End"/>
+        <Button Text="Kedvencek" HorizontalOptions="Center"/>
         <ListView ItemsSource="{Binding Books}">
             <ListView.ItemTemplate>
                 <DataTemplate>
