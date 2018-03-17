@@ -16,11 +16,23 @@ namespace Bookshelf.ViewModels
     {
         public DelegateCommand SearchCommand { get; private set; }
 
+       
         private ObservableCollection<Book> _books;
         public ObservableCollection<Book> Books
         {
             get { return _books; }
             set { SetProperty(ref _books, value); }
+        }
+
+        private Book _selectedItem;
+        public Book SelectedItem {
+            get { return _selectedItem; }
+
+            set {
+                _selectedItem = value;
+                
+                Select();
+            }
         }
 
         private string _searchText;
@@ -37,6 +49,14 @@ namespace Bookshelf.ViewModels
             Books = new ObservableCollection<Book>();
         }
 
+        private void Select()
+        {
+            var parameter = new NavigationParameters();
+            parameter.Add("item", SelectedItem);
+
+            NavigationService.NavigateAsync("DetailsPage", parameter);
+        }
+
         private async void Search()
         {
             Books.Clear();
@@ -51,6 +71,12 @@ namespace Bookshelf.ViewModels
                     Books.Add(b);
                 }
             }
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            _selectedItem = null;
         }
     }
 }

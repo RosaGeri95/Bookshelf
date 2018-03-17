@@ -33,15 +33,32 @@ namespace Bookshelf.WebClient
 
                 var books = new List<Book>();
 
-                foreach(XElement element in doc.Descendants("best_book"))
+                foreach(XElement element in doc.Descendants("work"))
                 {
-                    var title = element.Element("title").Value;
-                    XElement author = element.Element("author");
+                    var year = Int32.Parse( element.Element("original_publication_year").Value);
+                    var rating = Double.Parse( element.Element("average_rating").Value );
+
+                    XElement b = element.Element("best_book");
+                    var title = b.Element("title").Value;
+                    XElement author = b.Element("author");
                     var name = author.Element("name").Value;
-                    var book = new Book { BookTitle = title, Author = name };
+
+                    var sImg = b.Element("small_image_url").Value;
+                    var img = b.Element("image_url").Value;
+
+                    var book = new Book {
+                        BookTitle = title,
+                        Author = name,
+                        Rating = rating,
+                        PublicationYear = year,
+                        SmallImageURL = sImg,
+                        ImageURL = img
+                    };
 
                     books.Add(book);
                 }
+                Console.WriteLine("TEFD");
+
                 return books;
             }
             return new List<Book>();

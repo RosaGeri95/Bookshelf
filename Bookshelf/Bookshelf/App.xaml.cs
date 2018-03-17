@@ -32,6 +32,7 @@ namespace Bookshelf
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<DetailsPage>();
         }
     }
 }

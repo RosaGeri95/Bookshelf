@@ -10,5 +10,13 @@ namespace Bookshelf.Models
         public string Author { get; set; }
 
         public string BookTitle { get; set; }
+
+        public int PublicationYear { get; set; }
+
+        public double Rating { get; set; }
+
+        public string SmallImageURL { get; set; }
+
+        public string ImageURL { get; set; }
     }
 }

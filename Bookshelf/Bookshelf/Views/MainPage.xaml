@@ -4,18 +4,16 @@
              x:Class="Bookshelf.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+    <StackLayout>
         <SearchBar Text="{Binding SearchText}"  Placeholder="search a book" PlaceholderColor="Gray" HorizontalOptions="CenterAndExpand"
                    VerticalOptions="Start" SearchCommand="{Binding SearchCommand}"/>
-        <Button Text="Favourites" HorizontalOptions="End"/>
-        <Button Text="Kedvencek" HorizontalOptions="Center"/>
-        <ListView ItemsSource="{Binding Books}">
+        <ListView ItemsSource="{Binding Books}"  SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RowHeight="80" VerticalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell Height="100">
+                    <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding BookTitle}" LineBreakMode="WordWrap" WidthRequest="300"/>
-                            <Label Text="{Binding Author}" LineBreakMode="WordWrap" WidthRequest="100"/>
+                            <Image WidthRequest="80" Source="{Binding SmallImageURL}"/>
+                            <Label Text="{Binding BookTitle}" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
