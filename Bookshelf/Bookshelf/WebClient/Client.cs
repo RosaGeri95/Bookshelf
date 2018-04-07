@@ -18,7 +18,7 @@ namespace Bookshelf.WebClient
         {
             UriBuilder builder = new UriBuilder("https://www.goodreads.com/search/index.xml");
             var query = HttpUtility.ParseQueryString(builder.Query);
-            query["key"] = "key";
+            query["key"] = "K7gUv8myuMHUFxeNnDjfDQ";
             query["q"] = searchString;
             builder.Query = query.ToString();
             string url = builder.ToString();

@@ -7,9 +7,7 @@
              Title="{Binding Title}">
 
     <StackLayout VerticalOptions="Center">
-        <Entry Placeholder="username" PlaceholderColor="Gray"/>
-        <Entry Placeholder="password" IsPassword="True" PlaceholderColor="Gray"/>
-        <Button Text="Login" HorizontalOptions="End" Command="{Binding LoginCommand}"/>
+        <Button Text="Login" HorizontalOptions="Center" Command="{Binding LoginCommand}"/>
     </StackLayout>
-  
+
 </ContentPage>

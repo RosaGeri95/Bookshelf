@@ -16,7 +16,13 @@ namespace Bookshelf.ViewModels
     {
         public DelegateCommand SearchCommand { get; private set; }
 
-       
+        private string _tempToken;
+        public string TempToken
+        {
+            get { return _tempToken; }
+            set { SetProperty(ref _tempToken, value); }
+        }
+
         private ObservableCollection<Book> _books;
         public ObservableCollection<Book> Books
         {
@@ -25,12 +31,14 @@ namespace Bookshelf.ViewModels
         }
 
         private Book _selectedItem;
-        public Book SelectedItem {
+        public Book SelectedItem
+        {
             get { return _selectedItem; }
 
-            set {
+            set
+            {
                 _selectedItem = value;
-                
+
                 Select();
             }
         }
@@ -41,8 +49,8 @@ namespace Bookshelf.ViewModels
             get { return _searchText; }
             set { SetProperty(ref _searchText, value); }
         }
-        public MainPageViewModel(INavigationService navigationService) 
-            : base (navigationService)
+        public MainPageViewModel(INavigationService navigationService)
+            : base(navigationService)
         {
             Title = "Main Page";
             SearchCommand = new DelegateCommand(Search);
@@ -76,6 +84,7 @@ namespace Bookshelf.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            TempToken = (string)parameters["token"];
             _selectedItem = null;
         }
     }

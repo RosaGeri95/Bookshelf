@@ -9,13 +9,13 @@
 
     <Grid BindingContext="{Binding DetailedBook}" ColumnSpacing="5" RowSpacing="10" BackgroundColor="LightBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="200" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="35*" />
+            <ColumnDefinition Width="65*" />
         </Grid.ColumnDefinitions>
 
         <Image Source="{Binding ImageURL}" Grid.Column="0" Grid.Row="0"/>

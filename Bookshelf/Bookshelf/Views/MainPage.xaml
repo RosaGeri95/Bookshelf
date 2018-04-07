@@ -5,7 +5,8 @@
              Title="{Binding Title}">
 
     <StackLayout>
-        <SearchBar Text="{Binding SearchText}"  Placeholder="search a book" PlaceholderColor="Gray" HorizontalOptions="CenterAndExpand"
+        <Entry Text="{Binding TempToken}"/>
+        <SearchBar Text="{Binding SearchText}"  Placeholder="search a book" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"
                    VerticalOptions="Start" SearchCommand="{Binding SearchCommand}"/>
         <ListView ItemsSource="{Binding Books}"  SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RowHeight="80" VerticalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
             <ListView.ItemTemplate>
