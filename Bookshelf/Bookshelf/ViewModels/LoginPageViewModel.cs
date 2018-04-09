@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xamarin.Auth;
+using Xamarin.Forms;
 
 namespace Bookshelf.ViewModels
 {
@@ -77,7 +78,11 @@ namespace Bookshelf.ViewModels
                     Android.Content.Intent intent = auth.GetUI((Android.App.Activity)Forms.Context);
                     Forms.Context.StartActivity(intent);
             #endif*/
-
+            /*
+            if(Device.RuntimePlatform == Device.Android)
+            {
+                
+            }*/
 
             var parameter = new NavigationParameters();
             parameter.Add("token", sb.ToString());

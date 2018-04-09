@@ -62,7 +62,7 @@ namespace Bookshelf.ViewModels
             var parameter = new NavigationParameters();
             parameter.Add("item", SelectedItem);
 
-            NavigationService.NavigateAsync("DetailsPage", parameter);
+            NavigationService.NavigateAsync("./DetailsPage", parameter);
         }
 
         private async void Search()

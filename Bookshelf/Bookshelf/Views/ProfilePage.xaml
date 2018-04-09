@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Bookshelf.Views.ProfilePage" 
+             Title="{Binding Title}"
+             >
+
+    <Grid ColumnSpacing="5" RowSpacing="10" BackgroundColor="LightBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="profile.png" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3"/>
+
+        <Label Text="Username:" FontSize="Medium" Grid.Column="1" Grid.Row="1"/>
+        <Label Text="username" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="2"/>
+        <Label Text="Email:" FontSize="Medium" Grid.Column="1" Grid.Row="3"/>
+        <Label Text="email" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="4"/>
+        <Button Text="Change" FontSize="Medium" Grid.Column="1" Grid.Row="5"/>
+
+    </Grid>
+</ContentPage>

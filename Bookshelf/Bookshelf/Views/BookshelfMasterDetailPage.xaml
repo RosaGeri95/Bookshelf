@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  x:Class="Bookshelf.Views.BookshelfMasterDetailPage">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="Master">
+            <StackLayout Padding="20">
+                <Button Text="Login" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/LoginPage" />
+                <Button Text="Main" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/MainPage" />
+                <Button Text="Books" Command="{Binding NavigateCommand}" CommandParameter="Placeholder" />
+                <Button Text="Profile" Command="{Binding NavigateCommand}" CommandParameter="ProfilePage" />
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    
+    <MasterDetailPage.Detail>
+            <ContentPage Title="Welcome">
+                <Label Text="Welcome to my Goodread bookshelf app" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Red" Font="32"/>
+            </ContentPage>
+    </MasterDetailPage.Detail>
+
+</MasterDetailPage>

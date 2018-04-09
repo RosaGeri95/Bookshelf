@@ -24,7 +24,8 @@ namespace Bookshelf
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            //await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            await NavigationService.NavigateAsync("BookshelfMasterDetailPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -33,6 +34,10 @@ namespace Bookshelf
             containerRegistry.RegisterForNavigation<LoginPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<DetailsPage>();
+            containerRegistry.RegisterForNavigation<BookshelfMasterDetailPage>();
+            containerRegistry.RegisterForNavigation<ProfilePage>();
+            containerRegistry.RegisterForNavigation<BooksPage>();
+            containerRegistry.RegisterForNavigation<Placeholder>();
         }
     }
 }
