@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Bookshelf.Auth;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -24,7 +25,6 @@ namespace Bookshelf.ViewModels
         {
             StringBuilder sb = new StringBuilder();
 
-
             OAuth1Authenticator auth = new OAuth1Authenticator
             (
                 consumerKey: "K7gUv8myuMHUFxeNnDjfDQ",
@@ -36,6 +36,7 @@ namespace Bookshelf.ViewModels
             );
 
             auth.AllowCancel = true;
+           
 
             auth.Completed += (sender, eventArgs) =>
             {
@@ -44,7 +45,7 @@ namespace Bookshelf.ViewModels
 
                     if (eventArgs.Account != null && eventArgs.Account.Properties != null)
                     {
-                        sb.Append("Token = ").AppendLine($"{eventArgs.Account.Properties["access_token"]}");
+                        sb.Append("Token = ").AppendLine($"{eventArgs.Account.Properties["oauth_token"]}");
                     }
                     else
                     {
@@ -63,26 +64,7 @@ namespace Bookshelf.ViewModels
                 Console.WriteLine("Cancelled");
             };
 
-            /*if (Device.RuntimePlatform == Device.UWP)
-            {
-                //Uri uri = auth.GetUI();
-                Type page_type = auth.GetUI();
-
-                //(System.Windows.Application.Current.RootVisual as PhoneApplicationFrame).Navigate(uri);
-                Windows.UI.Xaml.Controls.Page this_page = this;
-                this_page.Frame.Navigate(page_type, auth);
-            }*/
-
-            /*
-            #if __ANDROID__
-                    Android.Content.Intent intent = auth.GetUI((Android.App.Activity)Forms.Context);
-                    Forms.Context.StartActivity(intent);
-            #endif*/
-            /*
-            if(Device.RuntimePlatform == Device.Android)
-            {
-                
-            }*/
+            DependencyService.Get<IAuthorization>().Authorize(auth);
 
             var parameter = new NavigationParameters();
             parameter.Add("token", sb.ToString());
