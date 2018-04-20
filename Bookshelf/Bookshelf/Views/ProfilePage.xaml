@@ -28,7 +28,7 @@
         <Label Text="username" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="2"/>
         <Label Text="Email:" FontSize="Medium" Grid.Column="1" Grid.Row="3"/>
         <Label Text="email" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="4"/>
-        <Button Text="Change" FontSize="Medium" Grid.Column="1" Grid.Row="5"/>
+        <Button Text="Change" FontSize="Medium" Grid.Column="1" Grid.Row="5" Command="{Binding ChangeCommand}"/>
 
     </Grid>
 </ContentPage>

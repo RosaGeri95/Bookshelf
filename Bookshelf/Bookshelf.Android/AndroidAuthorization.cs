@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -21,8 +21,6 @@ namespace Bookshelf.Droid
     {
         public void Authorize(OAuth1Authenticator auth)
         {
-            StringBuilder sb = new StringBuilder();
-
             Intent intent = auth.GetUI((Activity)Forms.Context);
             Forms.Context.StartActivity(intent);
         }

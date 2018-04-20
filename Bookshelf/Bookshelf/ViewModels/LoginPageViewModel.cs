@@ -21,14 +21,11 @@ namespace Bookshelf.ViewModels
             LoginCommand = new DelegateCommand(Login);
         }
 
-        private void Login()
+        private async void Login()
         {
-            var authService = new AuthorizationService();
-            string s = authService.StartAuthorization();
-            var parameter = new NavigationParameters();
-            parameter.Add("token", s.ToString());
-            NavigationService.NavigateAsync("../BookshelfMasterDetailPage", parameter);
+            var authService = AuthorizationService.Instance;
+            authService.StartAuthorization();
+            await NavigationService.NavigateAsync("../BookshelfMasterDetailPage");
         }
-        
     }
 }

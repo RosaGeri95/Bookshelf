@@ -50,12 +50,12 @@ namespace Bookshelf.ViewModels
             Books = new ObservableCollection<Book>();
         }
 
-        private void Select()
+        private async void Select()
         {
             var parameter = new NavigationParameters();
             parameter.Add("item", SelectedItem);
 
-            NavigationService.NavigateAsync("./DetailsPage", parameter);
+            await NavigationService.NavigateAsync("./DetailsPage", parameter);
         }
 
         private async void Search()

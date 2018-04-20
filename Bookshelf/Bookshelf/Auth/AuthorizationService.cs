@@ -9,12 +9,30 @@ namespace Bookshelf.Auth
 {
     public class AuthorizationService
     {
+        private static readonly object locked = new object();
+        private static AuthorizationService _instance;
 
-        public string StartAuthorization()
+        public string Token { get; set; }
+
+        private AuthorizationService() { Token = "placeholder"; }
+
+        public static AuthorizationService Instance
         {
+            get
+            {
+                lock (locked)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new AuthorizationService();
+                    }
+                    return _instance;
+                }
+            }
+        }
 
-            StringBuilder sb = new StringBuilder();
-
+        public void StartAuthorization()
+        {
             OAuth1Authenticator auth = new OAuth1Authenticator
             (
                 consumerKey: "K7gUv8myuMHUFxeNnDjfDQ",
@@ -34,11 +52,11 @@ namespace Bookshelf.Auth
 
                     if (eventArgs.Account != null && eventArgs.Account.Properties != null)
                     {
-                        sb.Append("Token = ").AppendLine($"{eventArgs.Account.Properties["oauth_token"]}");
+                        Token = eventArgs.Account.Properties["oauth_token"];
                     }
                     else
                     {
-                        sb.Append("Not authenticated ").AppendLine($"Account.Properties does not exist");
+                        Console.WriteLine("Account properties does not exists");
                     }
 
                 }
@@ -54,9 +72,6 @@ namespace Bookshelf.Auth
             };
 
             DependencyService.Get<IAuthorization>().Authorize(auth);
-
-            return sb.ToString();
         }
-
     }
 }
