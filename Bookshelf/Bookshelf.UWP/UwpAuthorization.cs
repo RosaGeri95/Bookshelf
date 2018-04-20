@@ -16,10 +16,10 @@ namespace Bookshelf.UWP
     {
         public void Authorize(OAuth1Authenticator auth)
         {
-            Windows.UI.Xaml.Controls.Frame frame = Windows.UI.Xaml.Window.Current.Content as Windows.UI.Xaml.Controls.Frame;
+           /* Windows.UI.Xaml.Controls.Frame frame = Windows.UI.Xaml.Window.Current.Content as Windows.UI.Xaml.Controls.Frame;
             frame.Navigate(auth.GetUI(), auth);
             Windows.UI.Xaml.Window.Current.Content = frame;
-            Windows.UI.Xaml.Window.Current.Activate();
+            Windows.UI.Xaml.Window.Current.Activate();*/
         }
     }
 }

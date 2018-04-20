@@ -16,13 +16,6 @@ namespace Bookshelf.ViewModels
     {
         public DelegateCommand SearchCommand { get; private set; }
 
-        private string _tempToken;
-        public string TempToken
-        {
-            get { return _tempToken; }
-            set { SetProperty(ref _tempToken, value); }
-        }
-
         private ObservableCollection<Book> _books;
         public ObservableCollection<Book> Books
         {
@@ -84,7 +77,6 @@ namespace Bookshelf.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            TempToken = (string)parameters["token"];
             _selectedItem = null;
         }
     }
