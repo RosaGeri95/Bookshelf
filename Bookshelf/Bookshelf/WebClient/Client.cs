@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Xamarin.Auth;
 
 namespace Bookshelf.WebClient
 {
     class Client
     {
-        public async static Task<List<Book>> SearchBooks(string searchString)
+        public async static Task<List<Book>> SearchBooksAsync(string searchString)
         {
             UriBuilder builder = new UriBuilder("https://www.goodreads.com/search/index.xml");
             var query = HttpUtility.ParseQueryString(builder.Query);
@@ -97,6 +98,25 @@ namespace Bookshelf.WebClient
                 return gruser;
             }
             return new GrUser();
+        }
+
+
+        public async static Task<string> ListBooksAsync()
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("id", AuthorizationService.Instance.UserID.ToString());
+
+            var request = new OAuth1Request("GET",
+                              new Uri("https://www.goodreads.com/owned_books/user?format=xml"),
+                              dict,
+                              AuthorizationService.Instance.CurrentUser);
+
+            var response = await request.GetResponseAsync();
+            if (response != null)
+            {
+                return response.GetResponseText();
+            }
+            return "not successfull";
         }
     }
 }

@@ -4,8 +4,11 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Bookshelf.Views.Placeholder"
-             Title="Not yet implemented">
+             Title="{Binding Title}">
 
-    <Label Text="TODO After authentication is done, here will be the liked / owned books listed" VerticalOptions="Center"/>
+    <StackLayout Orientation="Vertical">
+        <Button Text="List" Command="{Binding ListCommand}"/>
+        <Editor Text="{Binding Retval}" VerticalOptions="Center" HeightRequest="500"/>
+    </StackLayout>
 
 </ContentPage>

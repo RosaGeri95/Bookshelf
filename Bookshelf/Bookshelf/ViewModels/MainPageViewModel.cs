@@ -64,7 +64,7 @@ namespace Bookshelf.ViewModels
             if (SearchText != "")
             {
                 SearchText.Trim().Replace(' ', '+');
-                var searchedBooks = await WebClient.Client.SearchBooks(SearchText);
+                var searchedBooks = await WebClient.Client.SearchBooksAsync(SearchText);
 
                 ObservableCollection<Book> temp = new ObservableCollection<Book>(searchedBooks);
                 foreach (Book b in temp)

@@ -15,7 +15,7 @@ namespace Bookshelf.ViewModels
         public BookshelfMasterDetailPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-            Title = "Master-Detail";
+            Title = "Bookshelf";
             NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
