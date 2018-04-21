@@ -2,7 +2,7 @@
 
 namespace Bookshelf.Views
 {
-    public partial class BooksPage : TabbedPage
+    public partial class BooksPage : ContentPage
     {
         public BooksPage()
         {

@@ -2,9 +2,9 @@
 
 namespace Bookshelf.Views
 {
-    public partial class Placeholder : ContentPage
+    public partial class ShelvesPage : ContentPage
     {
-        public Placeholder()
+        public ShelvesPage()
         {
             InitializeComponent();
         }

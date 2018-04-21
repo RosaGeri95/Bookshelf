@@ -10,7 +10,7 @@
         <ContentPage Title="Master">
             <StackLayout Padding="20">
                 <Button Text="Main" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/MainPage" />
-                <Button Text="Books" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/Placeholder" />
+                <Button Text="Shelves" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/ShelvesPage" />
                 <Button Text="Profile" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/ProfilePage" />
             </StackLayout>
         </ContentPage>

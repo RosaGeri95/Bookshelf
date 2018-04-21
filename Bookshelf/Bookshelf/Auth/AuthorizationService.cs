@@ -16,8 +16,6 @@ namespace Bookshelf.Auth
         public int UserID { get; set; }
         public Account CurrentUser { get; set; }
 
-        public string ListedBooks { get; set; }
-
         private AuthorizationService() { }
 
         public static AuthorizationService Instance
@@ -69,25 +67,6 @@ namespace Bookshelf.Auth
                             var doc = XDocument.Parse(xmlData);
                             UserID = Int32.Parse(doc.Element("GoodreadsResponse").Element("user").Attribute("id").Value);
                         }
-
-                        /*
-                        var dict = new Dictionary<string, string>();
-                        //dict.Add("id", UserID.ToString());
-                        dict.Add("name", "read");
-                        dict.Add("book_id", "2787883");
-                        dict.Add("a", "remove");
-
-                        var request2 = new OAuth1Request("POST",
-                                           new Uri("https://www.goodreads.com/shelf/add_to_shelf.xml"),
-                                           dict,
-                                           CurrentUser);
-
-                        var response2 = await request2.GetResponseAsync();
-                        if (response2 != null)
-                        {
-                            ListedBooks = response2.GetResponseText();
-                        }*/
-
                     }
                     else
                     {

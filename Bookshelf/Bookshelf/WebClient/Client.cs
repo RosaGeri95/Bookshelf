@@ -101,24 +101,51 @@ namespace Bookshelf.WebClient
         }
 
 
-        public async static Task<string> ListBooksAsync()
+        public async static Task<List<Book>> ListBooksAsync(string shelf)
         {
-            var dict = new Dictionary<string, string>();
-            dict.Add("v", "2");
-            dict.Add("id", AuthorizationService.Instance.UserID.ToString());
-            dict.Add("key", "K7gUv8myuMHUFxeNnDjfDQ");
+            string uri = "https://www.goodreads.com/review/list?id=" + AuthorizationService.Instance.UserID.ToString() 
+                + "&v=2&key=K7gUv8myuMHUFxeNnDjfDQ&shelf=" + shelf;
 
             var request = new OAuth1Request("GET",
-                              new Uri("https://www.goodreads.com/review/list"),
-                              dict,
+                              new Uri(uri),
+                              null,
                               AuthorizationService.Instance.CurrentUser);
 
             var response = await request.GetResponseAsync();
             if (response != null)
             {
-                return response.GetResponseText();
+                var content = response.GetResponseText();
+                var doc = XDocument.Parse(content);
+
+                var books = new List<Book>();
+
+                foreach (XElement element in doc.Descendants("book"))
+                {
+                    //var year = Int32.Parse(element.Element("original_publication_year").Value);
+                    //var rating = Double.Parse(element.Element("average_rating").Value);
+
+                    var title = element.Element("title").Value;
+                    XElement author = element.Element("authors").Element("author");
+                    var name = author.Element("name").Value;
+
+                    var sImg = element.Element("small_image_url").Value;
+                    var img = element.Element("image_url").Value;
+
+                    var book = new Book
+                    {
+                        BookTitle = title,
+                        Author = name,
+                       // Rating = rating,
+                       // PublicationYear = year,
+                        SmallImageURL = sImg,
+                        ImageURL = img
+                    };
+
+                    books.Add(book);
+                }
+                return books; 
             }
-            return "not successfull";
+            return new List<Book>();
         }
 
         public async static Task<List<string>> ListShelvesAsync()

@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="Bookshelf.Views.Placeholder"
+             x:Class="Bookshelf.Views.ShelvesPage"
              Title="{Binding Title}">
 
     <StackLayout Orientation="Vertical">
-        <Button Text="List" Command="{Binding ListCommand}"/>
-        <ListView ItemsSource="{Binding Shelves}"  RowHeight="80" VerticalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
+        <Button Text="Add new shelf" Command="{Binding SelectCommand}"/>
+        <ListView ItemsSource="{Binding Shelves}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RowHeight="80" VerticalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
