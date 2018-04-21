@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Xamarin.Auth;
 using Xamarin.Forms;
 
@@ -12,9 +13,10 @@ namespace Bookshelf.Auth
         private static readonly object locked = new object();
         private static AuthorizationService _instance;
 
-        public string Token { get; set; }
+        public int UserID { get; set; }
+        public Account CurrentUser { get; set; }
 
-        private AuthorizationService() { Token = "placeholder"; }
+        private AuthorizationService() { }
 
         public static AuthorizationService Instance
         {
@@ -45,14 +47,27 @@ namespace Bookshelf.Auth
 
             auth.AllowCancel = true;
 
-            auth.Completed += (sender, eventArgs) =>
+            auth.Completed += async (sender, eventArgs) =>
             {
                 if (eventArgs.IsAuthenticated)
                 {
 
                     if (eventArgs.Account != null && eventArgs.Account.Properties != null)
                     {
-                        Token = eventArgs.Account.Properties["oauth_token"];
+                        CurrentUser = eventArgs.Account;
+
+                        var request = new OAuth1Request("GET",
+                                          new Uri("https://www.goodreads.com/api/auth_user"),
+                                          null,
+                                          CurrentUser);
+
+                        var response = await request.GetResponseAsync();
+                        if (response != null)
+                        {
+                            var xmlData = response.GetResponseText();
+                            var doc = XDocument.Parse(xmlData);
+                            UserID = Int32.Parse(doc.Element("GoodreadsResponse").Element("user").Attribute("id").Value);
+                        }
                     }
                     else
                     {

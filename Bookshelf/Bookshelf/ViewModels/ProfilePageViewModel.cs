@@ -1,4 +1,5 @@
 ﻿using Bookshelf.Auth;
+using Bookshelf.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -11,22 +12,29 @@ namespace Bookshelf.ViewModels
 {
 	public class ProfilePageViewModel : ViewModelBase
 	{
-        IPageDialogService pageDialogService;
+        private GrUser _user;
+        public GrUser User
+        {
+            get { return _user; }
 
-        public DelegateCommand ChangeCommand { get; private set; }
+            set
+            {
+                SetProperty(ref _user, value);
+            }
+        }
 
-        public ProfilePageViewModel(INavigationService navigationService, IPageDialogService pageDialog)
+        public ProfilePageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "Profile";
-            pageDialogService = pageDialog;
-            ChangeCommand = new DelegateCommand(Change);
         }
 
-        private void Change()
+
+        public override async void OnNavigatingTo(NavigationParameters parameters)
         {
-            AuthorizationService authservice = AuthorizationService.Instance;
-            pageDialogService.DisplayAlertAsync("Token", authservice.Token, "Ok");
+            base.OnNavigatingTo(parameters);
+
+            User = await WebClient.Client.GetUserInfoAsync();
         }
     }
 }

@@ -9,26 +9,29 @@
 
     <Grid ColumnSpacing="5" RowSpacing="10" BackgroundColor="LightBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
 
-        <Image Source="profile.png" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3"/>
+        <Image Source="{Binding User.Image}" Grid.Column="0" Grid.Row="0"/>
 
-        <Label Text="Username:" FontSize="Medium" Grid.Column="1" Grid.Row="1"/>
-        <Label Text="username" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="2"/>
-        <Label Text="Email:" FontSize="Medium" Grid.Column="1" Grid.Row="3"/>
-        <Label Text="email" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="4"/>
-        <Button Text="Change" FontSize="Medium" Grid.Column="1" Grid.Row="5" Command="{Binding ChangeCommand}"/>
+        <Label Text="Username:" FontSize="Medium" Grid.Column="0" Grid.Row="1"/>
+        <Label Text="{Binding User.Name}" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="1"/>
 
+        <Label Text="Joined:" FontSize="Medium" Grid.Column="0" Grid.Row="2"/>
+        <Label Text="{Binding User.Joined}" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="2"/>
+
+        <Label Text="Friends count:" FontSize="Medium" Grid.Column="0" Grid.Row="3"/>
+        <Label Text="{Binding User.NumberOfFriends}" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="3"/>
+
+        <Label Text="Number of shelves:" FontSize="Medium" Grid.Column="0" Grid.Row="4"/>
+        <Label Text="{Binding User.NumberOfShelves}" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="4"/>
     </Grid>
 </ContentPage>
