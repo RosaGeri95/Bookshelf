@@ -104,10 +104,12 @@ namespace Bookshelf.WebClient
         public async static Task<string> ListBooksAsync()
         {
             var dict = new Dictionary<string, string>();
+            dict.Add("v", "2");
             dict.Add("id", AuthorizationService.Instance.UserID.ToString());
+            dict.Add("key", "K7gUv8myuMHUFxeNnDjfDQ");
 
             var request = new OAuth1Request("GET",
-                              new Uri("https://www.goodreads.com/owned_books/user?format=xml"),
+                              new Uri("https://www.goodreads.com/review/list"),
                               dict,
                               AuthorizationService.Instance.CurrentUser);
 
@@ -117,6 +119,32 @@ namespace Bookshelf.WebClient
                 return response.GetResponseText();
             }
             return "not successfull";
+        }
+
+        public async static Task<List<string>> ListShelvesAsync()
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("user_id", AuthorizationService.Instance.UserID.ToString());
+
+            var request = new OAuth1Request("GET",
+                              new Uri("https://www.goodreads.com/shelf/list.xml"),
+                              dict,
+                              AuthorizationService.Instance.CurrentUser);
+
+            var response = await request.GetResponseAsync();
+            if (response != null)
+            {
+                var data = response.GetResponseText();
+                var doc = XDocument.Parse(data);
+                var list = new List<string>();
+
+                foreach(XElement e in doc.Descendants("user_shelf"))
+                {
+                    list.Add(e.Element("name").Value);
+                }
+                return list;
+            }
+            return new List<string>();
         }
     }
 }

@@ -14,11 +14,11 @@ namespace Bookshelf.ViewModels
 	{
         public DelegateCommand ListCommand { get; private set; }
 
-        private ObservableCollection<Book> _books;
-        public ObservableCollection<Book> Books
+        private ObservableCollection<string> _shelves;
+        public ObservableCollection<string> Shelves
         {
-            get { return _books; }
-            set { SetProperty(ref _books, value); }
+            get { return _shelves; }
+            set { SetProperty(ref _shelves, value); }
         }
 
         private string _retval;
@@ -46,22 +46,30 @@ namespace Bookshelf.ViewModels
         {
             Title = "Books";
             ListCommand = new DelegateCommand(ListBooks);
-            Books = new ObservableCollection<Book>();
+            Shelves = new ObservableCollection<string>();
         }
 
         private async void ListBooks()
         {
-            Books.Clear();
-            //Retval = await WebClient.Client.ListBooksAsync();
-            Retval = AuthorizationService.Instance.ListedBooks;
-           /* var listedBooks = await WebClient.Client.ListBooksAsync();
+            Shelves.Clear();
 
-
-            ObservableCollection<Book> temp = new ObservableCollection<Book>(listedBooks);
-            foreach (Book b in temp)
+            var shelf = await WebClient.Client.ListShelvesAsync();
+            ObservableCollection<string> temp = new ObservableCollection<string>(shelf);
+            foreach (string s in temp)
             {
-                Books.Add(b);
-            }*/
+                Shelves.Add(s);
+            }
+
+            //Retval = await WebClient.Client.ListBooksAsync();
+            //Retval = AuthorizationService.Instance.ListedBooks;
+            /* var listedBooks = await WebClient.Client.ListBooksAsync();
+
+
+             ObservableCollection<Book> temp = new ObservableCollection<Book>(listedBooks);
+             foreach (Book b in temp)
+             {
+                 Books.Add(b);
+             }*/
         }
 
         private async void Select()

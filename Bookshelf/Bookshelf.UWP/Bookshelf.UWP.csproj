@@ -105,6 +105,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bookshelf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="profile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -8,7 +8,18 @@
 
     <StackLayout Orientation="Vertical">
         <Button Text="List" Command="{Binding ListCommand}"/>
-        <Editor Text="{Binding Retval}" VerticalOptions="Center" HeightRequest="500"/>
+        <ListView ItemsSource="{Binding Shelves}"  RowHeight="80" VerticalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="bookshelf.png" HeightRequest="80" WidthRequest="80"/>
+                            <Label Text="{Binding}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 
 </ContentPage>

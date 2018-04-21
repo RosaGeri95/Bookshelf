@@ -70,7 +70,7 @@ namespace Bookshelf.Auth
                             UserID = Int32.Parse(doc.Element("GoodreadsResponse").Element("user").Attribute("id").Value);
                         }
 
-
+                        /*
                         var dict = new Dictionary<string, string>();
                         //dict.Add("id", UserID.ToString());
                         dict.Add("name", "read");
@@ -86,7 +86,7 @@ namespace Bookshelf.Auth
                         if (response2 != null)
                         {
                             ListedBooks = response2.GetResponseText();
-                        }
+                        }*/
 
                     }
                     else
