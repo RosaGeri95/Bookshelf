@@ -7,7 +7,10 @@
              Title="{Binding Title}">
 
     <StackLayout Orientation="Vertical">
-        <Button Text="Add new shelf" Command="{Binding SelectCommand}"/>
+        <StackLayout Orientation="Horizontal">
+            <Entry Placeholder="new shelf name" Text="{Binding NewShelf, Mode=TwoWay}"  HorizontalOptions="StartAndExpand"/>
+            <Button Text="Add new shelf" Command="{Binding AddCommand}" WidthRequest="150"/>
+        </StackLayout>
         <ListView ItemsSource="{Binding Shelves}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RowHeight="80" VerticalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
             <ListView.ItemTemplate>
                 <DataTemplate>

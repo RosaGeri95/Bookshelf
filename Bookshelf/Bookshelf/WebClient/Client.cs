@@ -173,5 +173,17 @@ namespace Bookshelf.WebClient
             }
             return new List<string>();
         }
+
+        public async static Task AddNewShelf( string shelfName)
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("user_shelf[name]", shelfName);
+
+            var request = new OAuth1Request("POST",
+                              new Uri("https://www.goodreads.com/user_shelves.xml"),
+                              dict,
+                              AuthorizationService.Instance.CurrentUser);
+            await request.GetResponseAsync();
+        }
     }
 }

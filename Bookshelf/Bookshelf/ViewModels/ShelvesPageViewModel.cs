@@ -10,7 +10,7 @@ namespace Bookshelf.ViewModels
 {
 	public class ShelvesPageViewModel : ViewModelBase
 	{
-        public DelegateCommand SelectCommand { get; private set; }
+        public DelegateCommand AddCommand { get; private set; }
 
         private ObservableCollection<string> _shelves;
         public ObservableCollection<string> Shelves
@@ -18,6 +18,14 @@ namespace Bookshelf.ViewModels
             get { return _shelves; }
             set { SetProperty(ref _shelves, value); }
         }
+
+        private string _newShelf;
+        public string NewShelf
+        {
+            get { return _newShelf; }
+            set { SetProperty(ref _newShelf, value); }
+        }
+
 
         private string _selectedItem;
         public string SelectedItem
@@ -36,8 +44,25 @@ namespace Bookshelf.ViewModels
             : base(navigationService)
         {
             Title = "Shelves";
-            SelectCommand = new DelegateCommand(Select);
+            AddCommand = new DelegateCommand(Add);
             Shelves = new ObservableCollection<string>();
+        }
+        
+        private async void Add()
+        {
+            if( NewShelf.Trim() != "")
+            {
+                await WebClient.Client.AddNewShelf(NewShelf);
+                NewShelf = "";
+
+                var shelf = await WebClient.Client.ListShelvesAsync();
+                ObservableCollection<string> temp = new ObservableCollection<string>(shelf);
+                Shelves.Clear();
+                foreach (string s in temp)
+                {
+                    Shelves.Add(s);
+                }
+            }
         }
 
         private async void Select()
@@ -52,10 +77,9 @@ namespace Bookshelf.ViewModels
         {
             base.OnNavigatingTo(parameters);
 
-            Shelves.Clear();
-
             var shelf = await WebClient.Client.ListShelvesAsync();
             ObservableCollection<string> temp = new ObservableCollection<string>(shelf);
+            Shelves.Clear();
             foreach (string s in temp)
             {
                 Shelves.Add(s);
