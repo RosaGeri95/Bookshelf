@@ -7,7 +7,7 @@
              Title="{Binding Title}"
              >
 
-    <Grid BindingContext="{Binding DetailedBook}" ColumnSpacing="5" RowSpacing="10" BackgroundColor="LightBlue">
+    <Grid ColumnSpacing="5" RowSpacing="10" BackgroundColor="LightBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="40*" />
             <RowDefinition Height="10*" />
@@ -18,21 +18,25 @@
             <ColumnDefinition Width="65*" />
         </Grid.ColumnDefinitions>
 
-        <Image Source="{Binding ImageURL}" Grid.Column="0" Grid.Row="0"/>
+        <Image Source="{Binding DetailedBook.ImageURL}" Grid.Column="0" Grid.Row="0"/>
 
         <StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="0">
             <Label Text="Author:" FontSize="Medium"/>
-            <Label Text="{Binding Author}" TextColor="Red"  FontSize="Medium"/>
+            <Label Text="{Binding DetailedBook.Author}" TextColor="Red"  FontSize="Medium"/>
             <Label Text="Title:"  FontSize="Medium"/>
-            <Label Text="{Binding BookTitle}" TextColor="Red" FontSize="Medium"/>
+            <Label Text="{Binding DetailedBook.BookTitle}" TextColor="Red" FontSize="Medium"/>
             <Label Text="Year of publication:" FontSize="Medium"/>
-            <Label Text="{Binding PublicationYear}" TextColor="Red" FontSize="Medium"/>
+            <Label Text="{Binding DetailedBook.PublicationYear}" TextColor="Red" FontSize="Medium"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="Azure">
             <Label Text="Rating: " FontSize="Medium"/>
-            <Label Text="{Binding Rating}" FontSize="Medium" TextColor="Red"/>
-            <Button Text="Rate book" WidthRequest="150" HorizontalOptions="End"/>
+            <Label Text="{Binding DetailedBook.Rating}" FontSize="Medium" TextColor="Red"/>
+            <Button Text="Rate book" WidthRequest="100"/>
+            <Button Text="Add to shelf"
+                    Command="{Binding AddToShelfCommand}"
+                    WidthRequest="100"
+                    HorizontalOptions="End" />
         </StackLayout>
 
         <StackLayout Orientation="Vertical" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">

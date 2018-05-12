@@ -19,10 +19,31 @@ namespace Bookshelf.ViewModels
             set { SetProperty(ref _books, value); }
         }
 
+        private Book _selectedItem;
+        public Book SelectedItem
+        {
+            get { return _selectedItem; }
+
+            set
+            {
+                _selectedItem = value;
+
+                Select();
+            }
+        }
+
         public BooksPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Books = new ObservableCollection<Book>();
+        }
+
+        private async void Select()
+        {
+            var parameter = new NavigationParameters();
+            parameter.Add("item", SelectedItem);
+
+            await NavigationService.NavigateAsync("./DetailsPage", parameter);
         }
 
         public override async void OnNavigatingTo(NavigationParameters parameters)
@@ -32,7 +53,7 @@ namespace Bookshelf.ViewModels
             Title = (string)parameters["item"];
             Books.Clear();
 
-            var result = await WebClient.Client.ListBooksAsync((string)parameters["item"]);
+            var result = await WebClient.Client.ListBooksOfShelfAsync((string)parameters["item"]);
 
             ObservableCollection<Book> temp = new ObservableCollection<Book>(result);
 

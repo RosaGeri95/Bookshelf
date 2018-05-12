@@ -41,6 +41,7 @@ namespace Bookshelf.WebClient
                     var rating = Double.Parse( element.Element("average_rating").Value );
 
                     XElement b = element.Element("best_book");
+                    var id = Int32.Parse(b.Element("id").Value);
                     var title = b.Element("title").Value;
                     XElement author = b.Element("author");
                     var name = author.Element("name").Value;
@@ -49,6 +50,7 @@ namespace Bookshelf.WebClient
                     var img = b.Element("image_url").Value;
 
                     var book = new Book {
+                        ID = id,
                         BookTitle = title,
                         Author = name,
                         Rating = rating,
@@ -101,7 +103,7 @@ namespace Bookshelf.WebClient
         }
 
 
-        public async static Task<List<Book>> ListBooksAsync(string shelf)
+        public async static Task<List<Book>> ListBooksOfShelfAsync(string shelf)
         {
             string uri = "https://www.goodreads.com/review/list?id=" + AuthorizationService.Instance.UserID.ToString() 
                 + "&v=2&key=K7gUv8myuMHUFxeNnDjfDQ&shelf=" + shelf;
@@ -121,8 +123,9 @@ namespace Bookshelf.WebClient
 
                 foreach (XElement element in doc.Descendants("book"))
                 {
+                    var id = Int32.Parse(element.Element("id").Value);
                     //var year = Int32.Parse(element.Element("original_publication_year").Value);
-                    //var rating = Double.Parse(element.Element("average_rating").Value);
+                    var rating = Double.Parse(element.Element("average_rating").Value);
 
                     var title = element.Element("title").Value;
                     XElement author = element.Element("authors").Element("author");
@@ -133,9 +136,10 @@ namespace Bookshelf.WebClient
 
                     var book = new Book
                     {
+                        ID = id,
                         BookTitle = title,
                         Author = name,
-                       // Rating = rating,
+                        Rating = rating,
                        // PublicationYear = year,
                         SmallImageURL = sImg,
                         ImageURL = img
@@ -183,6 +187,20 @@ namespace Bookshelf.WebClient
                               new Uri("https://www.goodreads.com/user_shelves.xml"),
                               dict,
                               AuthorizationService.Instance.CurrentUser);
+            await request.GetResponseAsync();
+        }
+
+        public async static Task AddBookToShelfAsync(int id)
+        {
+             var dict = new Dictionary<string, string>();
+             dict.Add("book_id", id.ToString());
+             dict.Add("name", "teszt");
+
+             var request = new OAuth1Request("POST",
+                               new Uri("https://www.goodreads.com/shelf/add_to_shelf.xml"),
+                               dict,
+                               AuthorizationService.Instance.CurrentUser);
+
             await request.GetResponseAsync();
         }
     }

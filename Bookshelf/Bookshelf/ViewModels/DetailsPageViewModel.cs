@@ -10,6 +10,8 @@ namespace Bookshelf.ViewModels
 {
 	public class DetailsPageViewModel : ViewModelBase
 	{
+        public DelegateCommand AddToShelfCommand { get; set; }
+
         private Book _detailedBook;
         public Book DetailedBook
         {
@@ -21,6 +23,12 @@ namespace Bookshelf.ViewModels
             : base (navigationService)
         {
             Title = "Details";
+            AddToShelfCommand = new DelegateCommand(Add);
+        }
+
+        private async void Add()
+        {
+            await WebClient.Client.AddBookToShelfAsync(DetailedBook.ID);
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)

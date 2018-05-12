@@ -7,6 +7,8 @@ namespace Bookshelf.Models
 {
     public class Book
     {
+        public int ID { get; set; }
+
         public string Author { get; set; }
 
         public string BookTitle { get; set; }

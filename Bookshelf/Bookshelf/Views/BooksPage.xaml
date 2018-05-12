@@ -6,7 +6,12 @@
             x:Class="Bookshelf.Views.BooksPage"
             Title="{Binding Title}">
 
-    <ListView ItemsSource="{Binding Books}" RowHeight="80" VerticalOptions="FillAndExpand" BackgroundColor="AntiqueWhite" SeparatorColor="Red">
+    <ListView ItemsSource="{Binding Books}"
+              SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+              RowHeight="80"
+              VerticalOptions="FillAndExpand"
+              BackgroundColor="AntiqueWhite"
+              SeparatorColor="Red">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
