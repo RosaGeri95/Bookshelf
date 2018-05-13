@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml.Linq;
@@ -202,6 +203,38 @@ namespace Bookshelf.WebClient
                                AuthorizationService.Instance.CurrentUser);
 
             await request.GetResponseAsync();
+        }
+
+        public async static Task<string> GetReviewsAsync(int id)
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("id", id.ToString());
+            dict.Add("key", "K7gUv8myuMHUFxeNnDjfDQ");
+            dict.Add("text_only", "true");
+
+            var request = new OAuth1Request("GET",
+                               new Uri("https://www.goodreads.com/book/show.xml"),
+                               dict,
+                               AuthorizationService.Instance.CurrentUser);
+
+            var response = await request.GetResponseAsync();
+            if (response != null)
+            {
+                var data = response.GetResponseText();
+                var doc = XDocument.Parse(data);
+
+                string cdata = doc.Element("GoodreadsResponse").Element("book").Element("reviews_widget").Value;
+
+                /*Gets the url for the reviews that can be find in a string that contains ' src="<url here>" '
+                This is a pretty bad solution, but the web api gave back a html structure ( in CDATA),
+                which was also badly formatted as it had multiple roots*/
+                var match = Regex.Match(cdata, "src=\"[^\"]*");
+                string s = match.Value;
+
+                //removes the first 5 character ( src=" ) to get the url
+                return s.Substring(5);
+               }
+            return "";
         }
     }
 }

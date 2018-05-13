@@ -13,6 +13,7 @@ namespace Bookshelf.ViewModels
 	public class DetailsPageViewModel : ViewModelBase
 	{
         public DelegateCommand AddToShelfCommand { get; set; }
+        public DelegateCommand ShowReviewCommand { get; set; }
 
         private Book _detailedBook;
         public Book DetailedBook
@@ -21,11 +22,24 @@ namespace Bookshelf.ViewModels
             set { SetProperty(ref _detailedBook, value); }
         }
 
+        private string _reviewUrl;
+        public string ReviewUrl
+        {
+            get { return _reviewUrl; }
+            set { SetProperty(ref _reviewUrl, value); }
+        }
+
         public DetailsPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
             Title = "Details";
             AddToShelfCommand = new DelegateCommand(Add);
+            ShowReviewCommand = new DelegateCommand(Show);
+        }
+
+        private async void Show()
+        {
+            ReviewUrl = await WebClient.Client.GetReviewsAsync(DetailedBook.ID);
         }
 
         private async void Add()
