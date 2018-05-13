@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.154-pre" />
     <PackageReference Include="Xamarin.Auth" Version="1.6.0" />
     <PackageReference Include="Xamarin.Auth.XamarinForms" Version="1.6.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
@@ -16,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\AddToShelfPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\BookshelfMasterDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

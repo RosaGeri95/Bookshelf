@@ -132,6 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.6" />
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>1.1.4.154-pre</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Auth">
       <Version>1.6.0.1</Version>
     </PackageReference>

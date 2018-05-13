@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Bookshelf.Views.AddToShelfPopupPage"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+
+    <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 Orientation="Vertical"
+                 BackgroundColor="White"
+                 Padding="20"
+                 Margin="20"
+                 Spacing="10">
+        <Label Text="Select a shelf" FontSize="24" />
+        <Label x:Name="idHolder"
+               Text="{Binding BookId, Mode=TwoWay}" 
+               IsVisible="False"/>
+        <Picker x:Name="picker" Title="select" ItemsSource="{Binding VmShelves, Mode=TwoWay}" SelectedItem="{Binding Selection, Mode=TwoWay}"/>
+        <Button Text="Add"
+                Command="{Binding AddCommand}" />
+        <Button Text="Cancel"
+                Command="{Binding CancelCommand}" />
+    </StackLayout>
+
+</pages:PopupPage>

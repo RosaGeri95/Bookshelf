@@ -190,11 +190,11 @@ namespace Bookshelf.WebClient
             await request.GetResponseAsync();
         }
 
-        public async static Task AddBookToShelfAsync(int id)
+        public async static Task AddBookToShelfAsync(int id, string shelf)
         {
              var dict = new Dictionary<string, string>();
              dict.Add("book_id", id.ToString());
-             dict.Add("name", "teszt");
+             dict.Add("name", shelf);
 
              var request = new OAuth1Request("POST",
                                new Uri("https://www.goodreads.com/shelf/add_to_shelf.xml"),

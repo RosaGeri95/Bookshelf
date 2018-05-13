@@ -1,7 +1,9 @@
 ﻿using Bookshelf.Models;
+using Bookshelf.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,8 @@ namespace Bookshelf.ViewModels
 
         private async void Add()
         {
-            await WebClient.Client.AddBookToShelfAsync(DetailedBook.ID);
+            var shelves = await WebClient.Client.ListShelvesAsync();
+            await PopupNavigation.Instance.PushAsync(new AddToShelfPopupPage(shelves, DetailedBook.ID));
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)
