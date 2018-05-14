@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Bookshelf.Views.ManageReviewPopupPage"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+
+    <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 WidthRequest="300"
+                 Orientation="Vertical"
+                 BackgroundColor="White"
+                 Padding="20"
+                 Margin="20"
+                 Spacing="10">
+        <Label Text="Manage review"
+               FontSize="24" />
+        
+        <Label x:Name="idHolder"
+               Text="{Binding ReviewId, Mode=TwoWay}"
+               IsVisible="False" />
+        <Label x:Name="idHolder2"
+               Text="{Binding BookId, Mode=TwoWay}"
+               IsVisible="False" />
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Rating:" />
+            <Slider x:Name="slider"
+                    WidthRequest="170"
+                    Minimum="0"
+                    Maximum="5"
+                    Value="{Binding ReviewRating, Mode=TwoWay}" />
+            <Label x:Name="roundedRating"
+                   Text="{Binding ReviewRating}" />
+        </StackLayout>
+        
+        <Label Text="Comment:" />
+        <Entry x:Name="entry"
+               Text="{Binding ReviewComment, Mode=TwoWay}"
+               HeightRequest="300" />
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Ok"
+                    Command="{Binding OkCommand}" />
+            <Button Text="Cancel"
+                    Command="{Binding CancelCommand}" />
+        </StackLayout>
+    </StackLayout>
+
+</pages:PopupPage>

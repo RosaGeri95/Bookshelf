@@ -38,6 +38,7 @@ namespace Bookshelf
             containerRegistry.RegisterForNavigation<BooksPage>();
             containerRegistry.RegisterForNavigation<ShelvesPage>();
             containerRegistry.RegisterForNavigation<AddToShelfPopupPage>();
+            containerRegistry.RegisterForNavigation<ManageReviewPopupPage>();
         }
     }
 }

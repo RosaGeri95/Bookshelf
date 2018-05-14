@@ -34,18 +34,17 @@
         <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="Azure">
             <Label Text="Rating: " FontSize="Medium"/>
             <Label Text="{Binding DetailedBook.Rating}" FontSize="Medium" TextColor="Red"/>
-            <Button Text="Rate book" WidthRequest="100"/>
-            <Button Text="Review book" WidthRequest="150" />
+            <Button Text="Review book" WidthRequest="150" Command="{Binding ManageReviewCommand}"/>
             <Button Text="Add to shelf"
                     Command="{Binding AddToShelfCommand}"
-                    WidthRequest="100"
+                    WidthRequest="150"
                     HorizontalOptions="End" />
         </StackLayout>
 
         <Button Grid.Column="1"
                 Grid.Row="2"
                 Text="Show reviews"
-                Command="{Binding ShowReviewCommand}" />
+                Command="{Binding ShowReviewsCommand}" />
         <Label Grid.Column="0"
             Grid.Row="2"
             FontSize="24"

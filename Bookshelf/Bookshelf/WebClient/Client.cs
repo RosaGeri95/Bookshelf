@@ -236,5 +236,122 @@ namespace Bookshelf.WebClient
                }
             return "";
         }
+
+
+        public async static Task<Review> GetUserReviewAsync(int bookId)
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("user_id", AuthorizationService.Instance.UserID.ToString());
+            dict.Add("book_id", bookId.ToString());
+            dict.Add("key", "K7gUv8myuMHUFxeNnDjfDQ");
+
+            var request = new OAuth1Request("GET",
+                               new Uri("https://www.goodreads.com/review/show_by_user_and_book.xml"),
+                               dict,
+                               AuthorizationService.Instance.CurrentUser);
+
+            var response = await request.GetResponseAsync();
+            if (response != null)
+            {
+                var data = response.GetResponseText();
+                var doc = XDocument.Parse(data);
+
+                XElement root = doc.Element("GoodreadsResponse");
+
+                if ( root.Value.Contains("review not found"))
+                {
+                    Review r =  new Review()
+                    {
+                        ID = 0,
+                        Rating = 0,
+                        Comment = ""
+                    };
+                    return r;
+                }
+
+                XElement review = root.Element("review");
+
+                ulong id = UInt64.Parse(review.Element("id").Value);
+                int rating = Int32.Parse(review.Element("rating").Value);
+                string comment = review.Element("body").Value;
+
+                Review rev = new Review()
+                {
+                    ID = id,
+                    Rating = rating,
+                    Comment = comment
+                };
+                return rev;
+
+                /*int commentCount = Int32.Parse(review.Element("comments_count").Value);
+                if( commentCount == 0)
+                {
+                    Review rev = new Review()
+                    {
+                        ID = id,
+                        Rating = rating,
+                        Comment = ""
+                    };
+                    return rev;
+                }
+                else
+                {
+                    XElement commentNode = review.Element("comments").Elements("comment").FirstOrDefault();
+                    string comment = commentNode.Element("body").Value;
+                    Review rev = new Review()
+                    {
+                        ID = id,
+                        Rating = rating,
+                        Comment = comment
+                    };
+                    return rev;
+                }*/
+            }
+            return new Review();
+        }
+
+
+        public async static Task EditReviewAsync(string reviewId, int rating, string comment)
+        {
+            var dict = new Dictionary<string, string>();
+            if (comment == "")
+            {
+                dict.Add("review[rating]", rating.ToString());
+            }
+            else
+            {
+                dict.Add("review[rating]", rating.ToString());
+                dict.Add("review[review]", comment);
+            }
+            string uri = "https://www.goodreads.com/review/" + reviewId + ".xml";
+            var request = new OAuth1Request("POST",
+                              new Uri(uri),
+                              dict,
+                              AuthorizationService.Instance.CurrentUser);
+
+            await request.GetResponseAsync();
+        }
+
+        public async static Task AddReviewAsync(string book_id, int rating, string comment)
+        {
+            var dict = new Dictionary<string, string>();
+            if (comment == "")
+            {
+                dict.Add("book_id", book_id);
+                dict.Add("review[rating]", rating.ToString());
+            }
+            else
+            {
+                dict.Add("book_id", book_id);
+                dict.Add("review[rating]", rating.ToString());
+                dict.Add("review[review]", comment);
+            }
+            var request = new OAuth1Request("POST",
+                              new Uri("https://www.goodreads.com/review.xml"),
+                              dict,
+                              AuthorizationService.Instance.CurrentUser);
+
+            await request.GetResponseAsync();
+        }
     }
 }
