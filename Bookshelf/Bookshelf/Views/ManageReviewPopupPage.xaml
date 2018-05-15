@@ -36,7 +36,7 @@
         </StackLayout>
         
         <Label Text="Comment:" />
-        <Entry x:Name="entry"
+        <Editor x:Name="editor"
                Text="{Binding ReviewComment, Mode=TwoWay}"
                HeightRequest="300" />
 

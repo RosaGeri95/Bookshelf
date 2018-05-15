@@ -13,7 +13,7 @@ namespace Bookshelf.Views
             idHolder.Text = review.ID.ToString();
             idHolder2.Text = bookId.ToString();
             slider.Value = review.Rating;
-            entry.Text = review.Comment;
+            editor.Text = review.Comment;
         }
     }
 }

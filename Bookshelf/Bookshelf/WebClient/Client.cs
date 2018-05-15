@@ -282,30 +282,6 @@ namespace Bookshelf.WebClient
                     Comment = comment
                 };
                 return rev;
-
-                /*int commentCount = Int32.Parse(review.Element("comments_count").Value);
-                if( commentCount == 0)
-                {
-                    Review rev = new Review()
-                    {
-                        ID = id,
-                        Rating = rating,
-                        Comment = ""
-                    };
-                    return rev;
-                }
-                else
-                {
-                    XElement commentNode = review.Element("comments").Elements("comment").FirstOrDefault();
-                    string comment = commentNode.Element("body").Value;
-                    Review rev = new Review()
-                    {
-                        ID = id,
-                        Rating = rating,
-                        Comment = comment
-                    };
-                    return rev;
-                }*/
             }
             return new Review();
         }
@@ -314,15 +290,9 @@ namespace Bookshelf.WebClient
         public async static Task EditReviewAsync(string reviewId, int rating, string comment)
         {
             var dict = new Dictionary<string, string>();
-            if (comment == "")
-            {
-                dict.Add("review[rating]", rating.ToString());
-            }
-            else
-            {
-                dict.Add("review[rating]", rating.ToString());
-                dict.Add("review[review]", comment);
-            }
+            dict.Add("review[rating]", rating.ToString());
+            dict.Add("review[review]", comment.Trim());
+            
             string uri = "https://www.goodreads.com/review/" + reviewId + ".xml";
             var request = new OAuth1Request("POST",
                               new Uri(uri),
@@ -335,17 +305,10 @@ namespace Bookshelf.WebClient
         public async static Task AddReviewAsync(string book_id, int rating, string comment)
         {
             var dict = new Dictionary<string, string>();
-            if (comment == "")
-            {
-                dict.Add("book_id", book_id);
-                dict.Add("review[rating]", rating.ToString());
-            }
-            else
-            {
-                dict.Add("book_id", book_id);
-                dict.Add("review[rating]", rating.ToString());
-                dict.Add("review[review]", comment);
-            }
+            dict.Add("book_id", book_id);
+            dict.Add("review[rating]", rating.ToString());
+            dict.Add("review[review]", comment);
+            
             var request = new OAuth1Request("POST",
                               new Uri("https://www.goodreads.com/review.xml"),
                               dict,

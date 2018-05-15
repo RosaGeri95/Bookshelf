@@ -4,6 +4,7 @@ using Prism.Navigation;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Bookshelf.ViewModels
@@ -40,6 +41,7 @@ namespace Bookshelf.ViewModels
             set { SetProperty(ref _reviewComment, value); }
         }
 
+
         public ManageReviewPopupPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
@@ -62,6 +64,7 @@ namespace Bookshelf.ViewModels
             {
                 await WebClient.Client.EditReviewAsync(ReviewId, ReviewRating, ReviewComment);
             }
+            await PopupNavigation.Instance.PopAsync(true);
         }
     }
 }
