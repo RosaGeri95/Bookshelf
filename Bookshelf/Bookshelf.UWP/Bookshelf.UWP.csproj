@@ -108,6 +108,12 @@
     <Content Include="bookshelf.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="goodreads_badge_read_reviews.png" />
+    <Content Include="goodreads_login_button.png" />
+    <Content Include="goodreads_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logo.png" />
     <Content Include="profile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

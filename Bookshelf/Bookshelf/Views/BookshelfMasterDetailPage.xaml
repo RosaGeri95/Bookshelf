@@ -18,8 +18,20 @@
     
     <MasterDetailPage.Detail>
             <ContentPage Title="Welcome">
-                <Label Text="Welcome to my Goodread bookshelf app" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Red" Font="32"/>
-            </ContentPage>
+            <StackLayout Orientation="Vertical"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center">
+                <Image Source="logo.png" Margin="20" />
+                <Label Text="Welcome to my Goodread bookshelf app!"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       TextColor="Red"
+                       Font="32"
+                       FontAttributes="Italic"
+                       XAlign="Center"
+                       Margin="20" />
+            </StackLayout>
+        </ContentPage>
     </MasterDetailPage.Detail>
 
 </MasterDetailPage>

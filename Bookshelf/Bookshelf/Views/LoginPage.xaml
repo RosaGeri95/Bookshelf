@@ -6,8 +6,12 @@
              x:Class="Bookshelf.Views.LoginPage"
              Title="{Binding Title}">
 
-    <StackLayout VerticalOptions="Center">
-        <Button Text="Login" HorizontalOptions="Center" Command="{Binding LoginCommand}"/>
+    <StackLayout VerticalOptions="CenterAndExpand"
+                 Orientation="Vertical">
+        
+        <Image Source="logo.png"  Margin="20"/>
+        <Button HorizontalOptions="Center" Command="{Binding LoginCommand}" Image="goodreads_login_button.png" BackgroundColor="White"/>
+        
     </StackLayout>
 
 </ContentPage>
