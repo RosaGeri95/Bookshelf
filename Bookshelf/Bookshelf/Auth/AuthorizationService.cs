@@ -42,7 +42,7 @@ namespace Bookshelf.Auth
                 requestTokenUrl: new Uri("https://www.goodreads.com/oauth/request_token"),
                 authorizeUrl: new Uri("https://www.goodreads.com/oauth/authorize"),
                 accessTokenUrl: new Uri("https://www.goodreads.com/oauth/access_token"),
-                callbackUrl: new Uri("custom://scheme/")
+                callbackUrl: new Uri("custom://scheme.hu")
             );
 
             auth.AllowCancel = true;
