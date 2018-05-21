@@ -18,10 +18,22 @@
                Text="{Binding BookId, Mode=TwoWay}" 
                IsVisible="False"/>
         <Picker x:Name="picker" Title="select" ItemsSource="{Binding VmShelves, Mode=TwoWay}" SelectedItem="{Binding Selection, Mode=TwoWay}"/>
-        <Button Text="Add"
-                Command="{Binding AddCommand}" />
-        <Button Text="Cancel"
-                Command="{Binding CancelCommand}" />
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Add"
+                Command="{Binding AddCommand}"
+                     TextColor="Red"
+                    BackgroundColor="Yellow"
+                    BorderColor="Red"
+                    BorderWidth="2" 
+                    BorderRadius="15"/>
+            <Button Text="Cancel"
+                Command="{Binding CancelCommand}" 
+                     TextColor="Red"
+                    BackgroundColor="Yellow"
+                    BorderColor="Red"
+                    BorderWidth="2" 
+                    BorderRadius="15"/>
+        </StackLayout>
     </StackLayout>
 
 </pages:PopupPage>

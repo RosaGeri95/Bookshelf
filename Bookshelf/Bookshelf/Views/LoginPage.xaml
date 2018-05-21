@@ -11,7 +11,7 @@
         
         <Image Source="logo.png"  Margin="20"/>
         <Button HorizontalOptions="Center" Command="{Binding LoginCommand}" Image="goodreads_login_button.png" BackgroundColor="White"/>
-        
+
     </StackLayout>
 
 </ContentPage>

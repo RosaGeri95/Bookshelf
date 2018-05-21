@@ -40,11 +40,21 @@
                Text="{Binding ReviewComment, Mode=TwoWay}"
                HeightRequest="300" />
 
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal" BackgroundColor="Azure">
             <Button Text="Ok"
-                    Command="{Binding OkCommand}" />
+                    Command="{Binding OkCommand}" 
+                     TextColor="Red"
+                    BackgroundColor="Yellow"
+                    BorderColor="Red"
+                    BorderWidth="2" 
+                    BorderRadius="15"/>
             <Button Text="Cancel"
-                    Command="{Binding CancelCommand}" />
+                    Command="{Binding CancelCommand}"
+                     TextColor="Red"
+                    BackgroundColor="Yellow"
+                    BorderColor="Red"
+                    BorderWidth="2" 
+                    BorderRadius="15"/>
         </StackLayout>
     </StackLayout>
 

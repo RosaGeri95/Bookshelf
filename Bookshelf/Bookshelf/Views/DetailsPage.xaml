@@ -9,10 +9,10 @@
 
     <Grid ColumnSpacing="5" RowSpacing="10" BackgroundColor="LightBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="34*" />
+            <RowDefinition Height="38*" />
             <RowDefinition Height="8*" />
-            <RowDefinition Height="8*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="45*" />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -23,23 +23,45 @@
         <Image Source="{Binding DetailedBook.ImageURL}" Grid.Column="0" Grid.Row="0"/>
 
         <StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-            <Label Text="Author:" FontSize="Medium"/>
-            <Label Text="{Binding DetailedBook.Author}" TextColor="Red"  FontSize="Medium"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Author:" FontSize="Medium"/>
+                <Label Text="{Binding DetailedBook.Author}" TextColor="Red"  FontSize="Medium"/>
+            </StackLayout>
+
             <Label Text="Title:"  FontSize="Medium"/>
             <Label Text="{Binding DetailedBook.BookTitle}" TextColor="Red" FontSize="Medium"/>
-            <Label Text="Year of publication:" FontSize="Medium"/>
-            <Label Text="{Binding DetailedBook.PublicationYear}" TextColor="Red" FontSize="Medium"/>
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Year of publication:" FontSize="Medium"/>
+                <Label Text="{Binding DetailedBook.PublicationYear}" TextColor="Red" FontSize="Medium"/>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Rating: " FontSize="Medium"/>
+                <Label Text="{Binding DetailedBook.Rating}" FontSize="Medium" TextColor="Red"/>
+            </StackLayout>
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="Azure">
-            <Label Text="Rating: " FontSize="Medium"/>
-            <Label Text="{Binding DetailedBook.Rating}" FontSize="Medium" TextColor="Red"/>
-            <Button Text="Review book" WidthRequest="150" Command="{Binding ManageReviewCommand}"/>
-            <Button Text="Add to shelf"
-                    Command="{Binding AddToShelfCommand}"
-                    WidthRequest="150"
-                    HorizontalOptions="End" />
-        </StackLayout>
+        <Button Grid.Column="0" Grid.Row="1"
+                Text="Review book"
+                WidthRequest="200"
+                Command="{Binding ManageReviewCommand}"
+                TextColor="Red"
+                BackgroundColor="Yellow"
+                BorderColor="Red"
+                BorderWidth="2" 
+                BorderRadius="15"
+                HorizontalOptions="Center"/>
+        <Button Grid.Column="1" Grid.Row="1"
+                Text="Add to shelf"
+                Command="{Binding AddToShelfCommand}"
+                WidthRequest="200"
+                TextColor="Red"
+                BackgroundColor="Yellow"
+                BorderColor="Red"
+                BorderWidth="2" 
+                BorderRadius="15"
+                HorizontalOptions="Center" />
 
         <Button Grid.Column="1"
                 Grid.Row="2"

@@ -9,30 +9,30 @@
 
     <Grid ColumnSpacing="5" RowSpacing="10" BackgroundColor="LightBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="6*" />
+            <RowDefinition Height="5*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
 
-        <Image Source="goodreads_icon.png" />
-        <Image Source="{Binding User.Image}" Grid.Column="1" Grid.Row="0"/>
+        <Image Source="{Binding User.Image}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
 
-        <Label Text="Username:" FontSize="Medium" Grid.Column="0" Grid.Row="1"/>
+        <Label Text="Username: " FontSize="Medium" Grid.Column="0" Grid.Row="1" HorizontalOptions="End"/>
         <Label Text="{Binding User.Name}" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="1"/>
 
-        <Label Text="Joined:" FontSize="Medium" Grid.Column="0" Grid.Row="2"/>
+        <Label Text="Joined: " FontSize="Medium" Grid.Column="0" Grid.Row="2" HorizontalOptions="End"/>
         <Label Text="{Binding User.Joined}" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="2"/>
 
-        <Label Text="Friends count:" FontSize="Medium" Grid.Column="0" Grid.Row="3"/>
+        <Label Text="Friends count: " FontSize="Medium" Grid.Column="0" Grid.Row="3" HorizontalOptions="End"/>
         <Label Text="{Binding User.NumberOfFriends}" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="3"/>
 
-        <Label Text="Number of shelves:" FontSize="Medium" Grid.Column="0" Grid.Row="4"/>
+        <Label Text="Number of shelves: " FontSize="Medium" Grid.Column="0" Grid.Row="4" HorizontalOptions="End"/>
         <Label Text="{Binding User.NumberOfShelves}" FontSize="Medium" TextColor="Red" Grid.Column="1" Grid.Row="4"/>
     </Grid>
 </ContentPage>

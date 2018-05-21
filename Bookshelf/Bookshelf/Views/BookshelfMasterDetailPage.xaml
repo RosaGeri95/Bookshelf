@@ -8,16 +8,31 @@
 
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
-            <StackLayout Padding="20">
-                <Button Text="Main" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/MainPage" />
-                <Button Text="Shelves" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/ShelvesPage" />
-                <Button Text="Profile" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/ProfilePage" />
+            <StackLayout Padding="20" BackgroundColor="LightYellow">
+                <Button Text="Search books" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/MainPage"
+                    TextColor="Red"
+                    BackgroundColor="Yellow"
+                    BorderColor="Red"
+                    BorderWidth="2" 
+                    BorderRadius="15"/>
+                <Button Text="Shelves" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/ShelvesPage"
+                    TextColor="Red"
+                    BackgroundColor="Yellow"
+                    BorderColor="Red"
+                    BorderWidth="2" 
+                    BorderRadius="15"/>
+                <Button Text="Profile" Command="{Binding NavigateCommand}" CommandParameter="NavigationPage/ProfilePage" 
+                    TextColor="Red"
+                    BackgroundColor="Yellow"
+                    BorderColor="Red"
+                    BorderWidth="2" 
+                    BorderRadius="15"/>
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
     
     <MasterDetailPage.Detail>
-            <ContentPage Title="Welcome">
+            <ContentPage Title="Welcome" BackgroundColor="Azure">
             <StackLayout Orientation="Vertical"
                          VerticalOptions="Center"
                          HorizontalOptions="Center">

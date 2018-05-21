@@ -8,8 +8,15 @@
 
     <StackLayout Orientation="Vertical">
         <StackLayout Orientation="Horizontal">
-            <Entry Placeholder="new shelf name" Text="{Binding NewShelf, Mode=TwoWay}"  HorizontalOptions="StartAndExpand"/>
-            <Button Text="Add new shelf" Command="{Binding AddCommand}" WidthRequest="150"/>
+            <Entry Placeholder="new shelf name" Text="{Binding NewShelf, Mode=TwoWay}"  HorizontalOptions="StartAndExpand" WidthRequest="300"/>
+            <Button Text="Add new shelf" 
+                    Command="{Binding AddCommand}" 
+                    WidthRequest="150"
+                    TextColor="Red"
+                    BackgroundColor="Yellow"
+                    BorderColor="Red"
+                    BorderWidth="2" 
+                    BorderRadius="15"/>
         </StackLayout>
         <ListView ItemsSource="{Binding Shelves}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RowHeight="80" VerticalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
             <ListView.ItemTemplate>

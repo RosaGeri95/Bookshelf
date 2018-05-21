@@ -45,7 +45,7 @@ namespace Bookshelf.ViewModels
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-            Title = "Main Page";
+            Title = "Search Page";
             SearchCommand = new DelegateCommand(Search);
             Books = new ObservableCollection<Book>();
         }
