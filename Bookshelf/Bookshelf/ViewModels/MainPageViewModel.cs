@@ -63,9 +63,7 @@ namespace Bookshelf.ViewModels
             Books.Clear();
             if (SearchText != "")
             {
-                SearchText.Trim().Replace(' ', '+');
                 var searchedBooks = await WebClient.Client.SearchBooksAsync(SearchText);
-
                 ObservableCollection<Book> temp = new ObservableCollection<Book>(searchedBooks);
                 foreach (Book b in temp)
                 {
@@ -77,7 +75,6 @@ namespace Bookshelf.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            _selectedItem = null;
         }
     }
 }

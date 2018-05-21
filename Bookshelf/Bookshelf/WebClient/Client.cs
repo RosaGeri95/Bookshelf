@@ -38,7 +38,16 @@ namespace Bookshelf.WebClient
 
                 foreach(XElement element in doc.Descendants("work"))
                 {
-                    var year = Int32.Parse( element.Element("original_publication_year").Value);
+                    int year;
+                    if (element.Element("original_publication_year").Attribute("nil") == null)
+                    {
+                        year = Int32.Parse(element.Element("original_publication_year").Value);
+                    }
+                    else
+                    {
+                        year = -1;
+                    }
+
                     var rating = Double.Parse( element.Element("average_rating").Value );
 
                     XElement b = element.Element("best_book");
@@ -125,7 +134,15 @@ namespace Bookshelf.WebClient
                 foreach (XElement element in doc.Descendants("book"))
                 {
                     var id = Int32.Parse(element.Element("id").Value);
-                    //var year = Int32.Parse(element.Element("original_publication_year").Value);
+                    int year;
+                    if(  ! String.IsNullOrWhiteSpace(element.Element("publication_year").Value))
+                    {
+                        year = Int32.Parse(element.Element("publication_year").Value);
+                    }
+                    else
+                    {
+                        year = -1;
+                    }
                     var rating = Double.Parse(element.Element("average_rating").Value);
 
                     var title = element.Element("title").Value;
@@ -141,7 +158,7 @@ namespace Bookshelf.WebClient
                         BookTitle = title,
                         Author = name,
                         Rating = rating,
-                       // PublicationYear = year,
+                        PublicationYear = year,
                         SmallImageURL = sImg,
                         ImageURL = img
                     };
