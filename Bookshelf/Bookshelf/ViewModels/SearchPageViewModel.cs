@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Bookshelf.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class SearchPageViewModel : ViewModelBase
     {
         public DelegateCommand SearchCommand { get; private set; }
 
@@ -42,7 +42,7 @@ namespace Bookshelf.ViewModels
             get { return _searchText; }
             set { SetProperty(ref _searchText, value); }
         }
-        public MainPageViewModel(INavigationService navigationService)
+        public SearchPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "Search Page";

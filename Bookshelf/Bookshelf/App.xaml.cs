@@ -31,7 +31,7 @@ namespace Bookshelf
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
-            containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<SearchPage>();
             containerRegistry.RegisterForNavigation<DetailsPage>();
             containerRegistry.RegisterForNavigation<BookshelfMasterDetailPage>();
             containerRegistry.RegisterForNavigation<ProfilePage>();

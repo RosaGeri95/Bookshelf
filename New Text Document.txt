@@ -1,0 +1,7 @@
+-mi volt a feladat
+-milyen technológiák
+-funkciók screenshottal
+-architektúra (mvvm, projekt felépülése)
+
+
+dokumentáció 10-15 oldal
